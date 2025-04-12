@@ -4,29 +4,54 @@
     <meta charset="UTF-8">
     <title>Caregiver Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script> <!-- Icon library -->
 </head>
-<body class="bg-gray-50 p-6">
-    <div class="max-w-4xl mx-auto">
-        <div class="flex justify-between items-center mb-6">
-            <h1 class="text-3xl font-bold">Welcome to your Dashboard</h1>
-            <a href="/logout" class="text-red-500 font-medium">Logout</a>
+<body class="bg-gradient-to-br from-blue-100 to-purple-100 min-h-screen p-6 font-sans">
+    <div class="max-w-5xl mx-auto space-y-8">
+        <!-- Header -->
+        <div class="flex justify-between items-center">
+            <h1 class="text-4xl font-extrabold text-gray-800">👋 Welcome, Caregiver!</h1>
+            <a href="/logout" class="text-red-500 font-medium hover:underline">Logout</a>
         </div>
 
-        <form action="/add-patient" method="POST" class="bg-white p-6 rounded shadow space-y-4 mb-8">
-            <h2 class="text-xl font-semibold">Add Patient</h2>
-            <div class="grid grid-cols-3 gap-4">
-                <input name="name" type="text" placeholder="Name" required class="p-2 border rounded col-span-1">
-                <input name="age" type="number" placeholder="Age" required class="p-2 border rounded col-span-1">
-                <input name="condition" type="text" placeholder="Condition" required class="p-2 border rounded col-span-1">
+        <!-- Fancy Tiles -->
+        <div class="grid md:grid-cols-2 gap-6">
+            <!-- Emotional Support Bot -->
+            <div class="cursor-pointer p-6 bg-white rounded-2xl shadow-md hover:shadow-xl flex items-center space-x-4 hover:bg-blue-50 transition">
+                <i class="ph ph-robot text-4xl text-blue-600"></i>
+                <div>
+                    <p class="text-lg font-semibold text-blue-700">Click here to use the Emotional Support Bot</p>
+                    <p class="text-sm text-gray-600">Talk to our friendly support companion!</p>
+                </div>
             </div>
-            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Add Patient</button>
+
+            <!-- Log Daily Details -->
+            <div class="cursor-pointer p-6 bg-white rounded-2xl shadow-md hover:shadow-xl flex items-center space-x-4 hover:bg-yellow-50 transition">
+                <i class="ph ph-notepad text-4xl text-yellow-500"></i>
+                <div>
+                    <p class="text-lg font-semibold text-yellow-700">Click here to log today's details</p>
+                    <p class="text-sm text-gray-600">Keep track of patient mood and activity.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Patient Form -->
+        <form action="/add-patient" method="POST" class="bg-white p-6 rounded-2xl shadow space-y-4">
+            <h2 class="text-2xl font-bold text-gray-800">➕ Add Patient</h2>
+            <div class="grid md:grid-cols-3 gap-4">
+                <input name="name" type="text" placeholder="Name" required class="p-3 border rounded-xl">
+                <input name="age" type="number" placeholder="Age" required class="p-3 border rounded-xl">
+                <input name="condition" type="text" placeholder="Condition" required class="p-3 border rounded-xl">
+            </div>
+            <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-xl hover:bg-blue-700">Add Patient</button>
         </form>
 
+        <!-- List of Patients -->
         <div>
-            <h2 class="text-xl font-semibold mb-4">Your Patients</h2>
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">📋 Your Patients</h2>
             <div class="grid gap-4">
                 {% for patient in patients %}
-                <a href="/patient/{{ patient['id'] }}" class="block p-4 bg-white rounded shadow hover:bg-gray-100">
+                <a href="/patient/{{ patient['id'] }}" class="block p-4 bg-white rounded-xl shadow hover:bg-gray-100">
                     <p><strong>Name:</strong> {{ patient['name'] }}</p>
                     <p><strong>Age:</strong> {{ patient['age'] }}</p>
                     <p><strong>Condition:</strong> {{ patient['condition'] }}</p>
