@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Patient</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-white p-6">
+    <div class="max-w-xl mx-auto space-y-6">
+        <h1 class="text-2xl font-bold text-center">Edit Patient Profile</h1>
+        <form method="POST" class="space-y-4">
+            <input name="name" type="text" value="{{ patient['name'] }}" required class="w-full p-2 border rounded">
+            <input name="age" type="number" value="{{ patient['age'] }}" required class="w-full p-2 border rounded">
+            <input name="condition" type="text" value="{{ patient['condition'] }}" required class="w-full p-2 border rounded">
+            <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Save Changes</button>
+        </form>
+        <div class="text-center">
+            <a href="/dashboard" class="text-blue-600">Back to Dashboard</a>
+        </div>
+    </div>
+</body>
+</html>

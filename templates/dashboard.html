@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Caregiver Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 p-6">
+    <div class="max-w-4xl mx-auto">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-3xl font-bold">Welcome to your Dashboard</h1>
+            <a href="/logout" class="text-red-500 font-medium">Logout</a>
+        </div>
+
+        <form action="/add-patient" method="POST" class="bg-white p-6 rounded shadow space-y-4 mb-8">
+            <h2 class="text-xl font-semibold">Add Patient</h2>
+            <div class="grid grid-cols-3 gap-4">
+                <input name="name" type="text" placeholder="Name" required class="p-2 border rounded col-span-1">
+                <input name="age" type="number" placeholder="Age" required class="p-2 border rounded col-span-1">
+                <input name="condition" type="text" placeholder="Condition" required class="p-2 border rounded col-span-1">
+            </div>
+            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Add Patient</button>
+        </form>
+
+        <div>
+            <h2 class="text-xl font-semibold mb-4">Your Patients</h2>
+            <div class="grid gap-4">
+                {% for patient in patients %}
+                <a href="/patient/{{ patient['id'] }}" class="block p-4 bg-white rounded shadow hover:bg-gray-100">
+                    <p><strong>Name:</strong> {{ patient['name'] }}</p>
+                    <p><strong>Age:</strong> {{ patient['age'] }}</p>
+                    <p><strong>Condition:</strong> {{ patient['condition'] }}</p>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
